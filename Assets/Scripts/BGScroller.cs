@@ -30,12 +30,11 @@ public class BGScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (transform.position.x < -width)
-        {
-            Vector2 resetPosition = new Vector2(width * 2f, 0);
-            transform.position = (Vector2)transform.position + resetPosition;
-        }
+      if (transform.position.x < -width) // Resets screen position when if at end of screen
+      {
+        Vector2 resetPosition = new Vector2(width * 2f, 0);
+        transform.position = (Vector2)transform.position + resetPosition;
+      }
 
     }
 }
