@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BGScroller : MonoBehaviour
 {
-    public BoxCollider2D collider;
+    /* public BoxCollider2D collider;
 
     public Rigidbody2D rb;
 
@@ -21,8 +21,8 @@ public class BGScroller : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
-        width = collider.size.x;
-        collider.enabled = false;
+        width = GetComponent<Collider>().size.x;
+        GetComponent<Collider>().enabled = false;
 
         rb.velocity = new Vector2(scrollSpeed, 0);
     }
@@ -37,4 +37,5 @@ public class BGScroller : MonoBehaviour
       }
 
     }
+    */
 }
