@@ -46,8 +46,8 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4905,8 +4905,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6642698597186324533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.29, y: 3.26, z: 1}
-  m_LocalScale: {x: 3.2228737, y: 3.1065793, z: 1}
+  m_LocalPosition: {x: 6.0331, y: 3.1987, z: 1}
+  m_LocalScale: {x: 0.6872136, y: 0.558038, z: 1}
   m_Children:
   - {fileID: 6642698596622781155}
   m_Father: {fileID: 0}
@@ -4952,7 +4952,7 @@ SpriteRenderer:
   m_SortingLayerID: 1131193087
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: 9d063b79be80b2b4886e4c74b45f8a29, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3cedd176fd50cb74994f9b5ae7fb7412, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

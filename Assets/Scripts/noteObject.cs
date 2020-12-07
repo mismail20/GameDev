@@ -30,18 +30,18 @@ public class noteObject : MonoBehaviour
                 {
                     Debug.Log("Normal");
                     Manager.GameManager.normalHit();
-                    Instantiate(normalEffect, transform.position, normalEffect.transform.rotation);
+                    effectSpawner.instance.spawnHit(this.name);
                 } else if (Mathf.Abs(transform.position.y) >= 0.05)
                 {
                     Debug.Log("Good");
                     Manager.GameManager.goodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
+                    effectSpawner.instance.spawnGood(this.name);
                 }
                 else
                 {
                     Debug.Log("Perfect");
                     Manager.GameManager.pefectHit();
-                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
+                    effectSpawner.instance.spawnPerfect(this.name);
                 }
             }
         }
@@ -63,7 +63,7 @@ public class noteObject : MonoBehaviour
             {
                 pressable = false;
                 Manager.GameManager.onMiss();
-                Instantiate(missEffect, transform.position, missEffect.transform.rotation);
+                effectSpawner.instance.spawnMiss(this.name);
             }
         }
     }

@@ -8,9 +8,10 @@ public class Manager : MonoBehaviour
 
     public AudioSource track;
     public bool gameStart;
+    public bool justStarted = false;
 
     public int score;
-    private int count=1;
+    public int count;
     private int noteScore = 10;
     private int goodHitScore = 20;
     private int perfectHitScore = 30;
@@ -19,13 +20,18 @@ public class Manager : MonoBehaviour
     public int multiTracker;
     public int[] multiLevels;
 
-    private float totalNotes, normalHits = 0, goodHits = 0, perfectHits = 0, missedHits = 0;
+    public float[,] levelCode = new float[,] { { 4, 1 }, { 2, 0.5f }, { 3, 2 }, { 4, 0 }, { 2, 1 } };
+
+    private float totalNotes, normalHits = 0, goodHits = 0, perfectHits = 0, missedHits = 0, totalHits = 0;
+
 
     public GameObject results;
     public Text percentHitText, normalHitsText, goodHitsText, perfectHitsText, missedHitsText, rankText, finalScoreText;
 
     public Text scoreText;
+    public GameObject scoreTextObj;
     public Text multiplierText;
+    public GameObject multTextObj;
 
     public FallScript fall;
 
@@ -36,13 +42,16 @@ public class Manager : MonoBehaviour
     {
         GameManager = this;
 
+        count = 1;
         multiplier = 1;
         multiLevels = new int[]{ 1, 2, 3, 4, 5, 6, 7};
 
         totalNotes = FindObjectsOfType<noteObject>().Length;
 
+
         scoreText.text = "Score: 0";
         multiplierText.text = "Multiplier: x1";
+
     }
 
     // Update is called once per frame
@@ -57,20 +66,34 @@ public class Manager : MonoBehaviour
                 multiplier = 1;
 
                 track.Play();
+
+                if (!justStarted)
+                {
+                    Debug.Log("Spawning...");
+                    justStarted = true;
+                    arrowSpawner.instance.spawn(levelCode[0, 0]);
+                    totalNotes++;
+                    StartCoroutine(spawner());
+                }
             }
         }
         else
         {
-            if(!track.isPlaying && !results.activeInHierarchy)
+            Debug.Log("Hi");
+            if(count==(totalNotes+1) && !results.activeInHierarchy)
             {
+                track.Stop();
                 results.SetActive(true);
+
+                scoreTextObj.SetActive(false);
+                multTextObj.SetActive(false);
 
                 normalHitsText.text = normalHits.ToString();
                 goodHitsText.text = goodHits.ToString();
                 perfectHitsText.text = perfectHits.ToString();
                 missedHitsText.text = missedHits.ToString();
 
-                float totalHits = normalHits+goodHits+perfectHits;;
+                totalHits = normalHits+goodHits+perfectHits;
                 float percentHits = (totalHits / totalNotes) * 100f;
 
                 percentHitText.text = percentHits.ToString("F2")+"%";
@@ -119,21 +142,19 @@ public class Manager : MonoBehaviour
 
         count++;
 
-        if(multiplier-1 < multiLevels.Length)
-        multiTracker++;
+        totalHits = normalHits + goodHits + perfectHits;
 
-        if(multiLevels[multiplier-1] >= multiTracker)
+        
+
+        if( multiplier == multiLevels[multiLevels.Length-1])
         {
-            multiTracker = 0;
+            multiplier = multiLevels[multiLevels.Length - 2];
+        }
+
+        if (totalHits == multiLevels[multiplier]){
             multiplier++;
         }
 
-        if(count == 5)
-        {
-            track.Stop();
-        }
-
-        //score += noteScore*multiplier;
         scoreText.text = "Score: " + score;
         multiplierText.text = "Multiplier x" + multiplier;
     }
@@ -165,8 +186,30 @@ public class Manager : MonoBehaviour
 
         missedHits++;
 
+        count++;
+
         multiplier = 1;
         multiTracker = 0;
         multiplierText.text = "Multiplier x" + multiplier;
+    }
+
+
+    IEnumerator spawner()
+    {
+        int levelDepth = 1;
+        int levelWidth = 0;
+        yield return new WaitForSeconds(levelCode[levelDepth - 1, levelWidth + 1]);
+        bool spawning = true; 
+        while (spawning) {
+            if (levelDepth == (levelCode.GetLength(0)))
+            {
+                spawning = false;
+                yield break;
+            }
+            arrowSpawner.instance.spawn(levelCode[levelDepth, levelWidth]);
+            yield return new WaitForSeconds(levelCode[levelDepth, levelWidth + 1]);
+            levelDepth++;
+            totalNotes++;
+        }
     }
 }
