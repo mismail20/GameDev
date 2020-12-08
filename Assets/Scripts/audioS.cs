@@ -14,7 +14,14 @@ public class audioS : MonoBehaviour
 
 	void Start(){
 		AudioSource.Play();
-		AudioSlider.value = PlayerPrefs.GetFloat("volume");
+		if(AudioSlider == null)
+        {
+			AudioSlider = null;
+		}
+        else
+        {
+			AudioSlider.value = PlayerPrefs.GetFloat("volume");
+		}
 	}
 	
 
