@@ -114,12 +114,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressable: 0
   inputKey: 276
-  normalEffect: {fileID: 6475995612489728632, guid: 77a2c7e8b0bb7114c89a57a3806554b8,
+  normalEffect: {fileID: 6475995612489728632, guid: c7a88cbd86a0b434a9901ff63470eb5e,
     type: 3}
-  goodEffect: {fileID: 5958176389638746221, guid: 04ed6127d0ecfe34fb3eb0c9c60ab835,
+  goodEffect: {fileID: 5958176389638746221, guid: 436969de586a7384593d1194f31e3a3c,
     type: 3}
-  perfectEffect: {fileID: 8864461579554693432, guid: ebe1330db28805c4c9c06c2e977a85e8,
+  perfectEffect: {fileID: 8864461579554693432, guid: c10f74517e8ef6c4eb9a87fdf655bccf,
     type: 3}
-  missEffect: {fileID: 6642698597186324533, guid: 43d229ef794ab2c429b7ee573714b576,
+  missEffect: {fileID: 6642698597186324533, guid: 722b60ef7a7ad3b4dad7e463cee99736,
     type: 3}
-  Spawner: {fileID: 0}

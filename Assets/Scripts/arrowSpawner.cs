@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class arrowSpawner : MonoBehaviour
 {
+
+    // This script concerns the spawning of the arrows on spawners at the top of the screen.
+
     public GameObject leftArrow, rightArrow, upArrow, downArrow;
     public GameObject leftSpawner, rightSpawner, upSpawner, downSpawner;
 
@@ -21,12 +24,14 @@ public class arrowSpawner : MonoBehaviour
         
     }
 
+    // In the manager we can call the spawn method with a value to represent where we want to spawn an object.
+
     public void spawn(float value)
     {
         if(value == 1)
         {
             var leftArrowObj = Instantiate(leftArrow, leftSpawner.transform.position, leftArrow.transform.rotation);
-            leftArrowObj.transform.parent = GameObject.Find("ArrowContainer").transform;
+            leftArrowObj.transform.parent = GameObject.Find("ArrowContainer").transform; // Here we move it into the proper container
         } 
         else if( value == 2)
         {
@@ -42,9 +47,6 @@ public class arrowSpawner : MonoBehaviour
         {
             var rightArrowObj = Instantiate(rightArrow, rightSpawner.transform.position, rightArrow.transform.rotation);
             rightArrowObj.transform.parent = GameObject.Find("ArrowContainer").transform;
-        } else if(value == 5)
-        {
-
         }
     }
 }

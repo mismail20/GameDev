@@ -5,6 +5,8 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
 
+    // All this does is change the sprite on a button press to give feedback to the user
+
     private SpriteRenderer SR;
     public Sprite defaultButton;
     public Sprite pressedButton;

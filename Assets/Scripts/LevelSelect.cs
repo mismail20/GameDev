@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
+
+    //Another Script which concerns the function of the main menu
+
     public void startFunction()
     {
         Debug.Log("Clicked");

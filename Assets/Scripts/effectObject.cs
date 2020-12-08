@@ -16,6 +16,6 @@ public class effectObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, lifelime);   
+        Destroy(gameObject, lifelime);   //This is where we destroy the object
     }
 }

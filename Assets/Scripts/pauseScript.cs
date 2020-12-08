@@ -26,7 +26,8 @@ public class pauseScript : MonoBehaviour
         	}
         }
     } 
-
+    
+    //Starts everything from the game
     public void ResumeGame(){
         Manager.GameManager.track.Play();
         pauseMenu.SetActive(false);
@@ -38,7 +39,9 @@ public class pauseScript : MonoBehaviour
 
     }
 
+    //Pauses the game
     void PauseGame(){
+        Manager.GameManager.paused = true;
         Manager.GameManager.track.Pause();
         pauseMenu.SetActive(true);
         resumeButton.SetActive(true);

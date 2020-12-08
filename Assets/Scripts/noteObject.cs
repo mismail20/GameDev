@@ -10,6 +10,7 @@ public class noteObject : MonoBehaviour
 
     public GameObject normalEffect, goodEffect, perfectEffect, missEffect;
     
+    //Every note falling down is a noteObject
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +25,15 @@ public class noteObject : MonoBehaviour
             if (pressable)
             {
                 gameObject.SetActive(false);
+                Object.Destroy(gameObject, 0.2f); // we decide to destory the game object
                 //Manager.GameManager.onHit();
 
-                if(Mathf.Abs(transform.position.y) >= 0.25)
+                //The following hit detection was inspired by the Original GamesPlusJames script, although not exactly the same
+                //as to work appropriately with the new effect generation.
+
+                //The idea to use each postion as absolute was theirs, however we do our own thing with it.
+
+                if (Mathf.Abs(transform.position.y) >= 0.25)
                 {
                     Debug.Log("Normal");
                     Manager.GameManager.normalHit();
@@ -47,6 +54,8 @@ public class noteObject : MonoBehaviour
         }
     }
 
+    //Credit to the idea of the collision system goes to the original GamesPlusJames script besides our edited spawner
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Activator")
@@ -64,6 +73,7 @@ public class noteObject : MonoBehaviour
                 pressable = false;
                 Manager.GameManager.onMiss();
                 effectSpawner.instance.spawnMiss(this.name);
+                Object.Destroy(gameObject, 0.2f);
             }
         }
     }

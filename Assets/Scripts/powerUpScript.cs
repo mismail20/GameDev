@@ -5,8 +5,11 @@ using UnityEngine;
 public class powerUpScript : MonoBehaviour
 {
 
+    //UNUSED SCRIPT
+
     public bool pressable;
     public KeyCode inputKey;
+
 
     // Start is called before the first frame update
     void Start()
